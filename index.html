@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lean Kaizen</title>
+    <!-- Tailwind CSS CDN สำหรับการจัดสไตล์ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* เปลี่ยนฟอนต์เป็น Prompt */
+            font-family: 'Prompt', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* กำหนดการจัดวางให้เนื้อหาอยู่กึ่งกลาง */
+        #container {
+            max-width: 1024px;
+        }
+        .heart-btn {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .admin-link {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+        }
+        .button-page.active {
+            background-color: #E5C69F;
+            color: #000000;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .modal-content {
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div id="container" class="mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-8">
+
+        <!-- แถบเมนูสำหรับการสลับหน้าเพจ -->
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8 sticky top-0 bg-white z-10 shadow-md p-4 rounded-xl">
+            <button id="page1-btn" class="button-page flex-1 py-3 px-6 rounded-2xl font-semibold transition-colors duration-300 shadow-md" style="background-color: #F5DEB3; color: #555555;">
+                Lean Kaizen คืออะไร
+            </button>
+            <button id="page2-btn" class="button-page flex-1 py-3 px-6 rounded-2xl font-semibold transition-colors duration-300 shadow-md" style="background-color: #F5DEB3; color: #555555;">
+                หลักการสำคัญ
+            </button>
+            <button id="page3-btn" class="button-page flex-1 py-3 px-6 rounded-2xl font-semibold transition-colors duration-300 shadow-md" style="background-color: #F5DEB3; color: #555555;">
+                ทำไมต้อง Lean Kaizen
+            </button>
+            <button id="page4-btn" class="button-page flex-1 py-3 px-6 rounded-2xl font-semibold transition-colors duration-300 shadow-md" style="background-color: #F5DEB3; color: #555555;">
+                สรุป
+            </button>
+            <button id="page5-btn" class="button-page flex-1 py-3 px-6 rounded-2xl font-semibold transition-colors duration-300 shadow-md" style="background-color: #F5DEB3; color: #555555;">
+                กิจกรรมชวนคิด Kaizen
+            </button>
+        </div>
+
+        <!-- เนื้อหาสำหรับหน้าเพจที่ 1 -->
+        <div id="page1" class="page">
+            <h1 class="text-5xl font-extrabold text-gray-800 mb-6 text-center">
+                🌱 <span class="text-blue-600">Lean Kaizen</span> คืออะไร?
+            </h1>
+            <p class="text-center mb-8 max-w-2xl mx-auto text-xl font-bold">
+                <span class="text-gray-600">การปรับปรุงอย่างต่อเนื่อง</span> <span class="text-blue-600">(Continuous Improvement)</span> <br> <span class="text-gray-600">เพื่อลดความสูญเปล่าและเพิ่มประสิทธิภาพการทำงาน</span>
+            </p>
+
+            <div class="flex flex-col lg:flex-row-reverse items-center space-y-8 lg:space-y-0 lg:space-x-12">
+                
+                <div class="flex-none w-full lg:w-1/2 p-6 rounded-2xl shadow-2xl bg-white transform transition-transform duration-300 min-h-64 flex items-center justify-center">
+                    <img src="https://img5.pic.in.th/file/secure-sv1/ChatGPT-Image-15-..-2568-12_52_28.png" alt="ChatGPT Image 15 ก.ย. 2568 12 52 28" border="0" class="w-full h-auto object-cover rounded-2xl shadow-md">
+                </div>
+                
+                <div class="flex-1 text-gray-700 text-lg leading-relaxed space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-2xl shadow-sm">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                            Lean: ลดความสูญเปล่า
+                        </h2>
+                        <p>
+                            การค้นหาและกำจัดสิ่งที่ไม่จำเป็นในกระบวนการทำงาน เช่น การรอคอย, การเคลื่อนไหวที่ซ้ำซ้อน, หรือการผลิตที่มากเกินไป เพื่อให้งานมีประสิทธิภาพสูงสุด
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-2xl shadow-sm">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                            Kaizen: ปรับปรุงอย่างต่อเนื่อง
+                        </h2>
+                        <p>
+                            การเปลี่ยนแปลงเล็ก ๆ น้อย ๆ ที่ทำเป็นประจำทุกวัน โดยไม่ต้องรอโปรเจกต์ใหญ่ ๆ ทำให้เกิดผลลัพธ์ที่ยิ่งใหญ่ในระยะยาว
+                        </p>
+                    </div>
+                    
+                    <p class="text-center text-xl font-semibold text-blue-600 mt-8">
+                        "ทำงานให้ดีขึ้นทุกวัน"
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- เนื้อหาสำหรับหน้าเพจที่ 2 (ซ่อนไว้เริ่มต้น) -->
+        <div id="page2" class="page hidden">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-8 text-center sm:text-left">
+                💡 หลักการสำคัญ
+            </h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 text-pink-500">
+                        👣 ไปดูหน้างานจริง (Gemba)
+                    </h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        การลงพื้นที่จริงเพื่อเห็นสภาพการทำงาน ไม่ใช่แค่รายงานบนกระดาษ ทำให้เราเข้าใจปัญหาและความสูญเปล่าที่แท้จริง
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 text-blue-500">
+                        ⚙️ ปรับเล็ก ๆ แต่ต่อเนื่อง
+                    </h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        เริ่มจากการแก้ไขปัญหาเล็ก ๆ เช่น ลดการเดินซ้ำ ๆ หรือปรับตำแหน่งอุปกรณ์ เพื่อสร้างการเปลี่ยนแปลงที่ดีขึ้นอย่างรวดเร็ว
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 text-purple-500">
+                        🤝 ทุกคนมีส่วนร่วม
+                    </h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        พนักงานทุกระดับมีสิทธิ์เสนอแนวคิดและลงมือปรับปรุงได้เอง เพื่อให้เกิดความรู้สึกเป็นเจ้าของงานและมีส่วนร่วมในการพัฒนา
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 text-green-500">
+                        📊 ใช้ข้อมูลตัดสินใจ
+                    </h2>
+                    <p class="text-700 text-lg leading-relaxed">
+                        การตัดสินใจควรตั้งอยู่บนข้อมูลจริง เช่น เวลาการผลิต หรือจำนวนของเสีย เพื่อให้การแก้ไขปัญหามีประสิทธิภาพและวัดผลได้
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- เนื้อหาสำหรับหน้าเพจที่ 3 (ซ่อนไว้เริ่มต้น) -->
+        <div id="page3" class="page hidden">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-8 text-center sm:text-left">
+                🎯 ทำไมต้อง Lean Kaizen (เหตุผลหลัก)
+            </h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center space-y-2 text-center">
+                    <span class="text-3xl text-green-500">💰</span>
+                    <h2 class="text-2xl font-bold text-gray-800">ลดต้นทุน เพิ่มคุณภาพ</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        การลดขั้นตอนที่ไม่จำเป็นและลดความสูญเปล่าด้านต่างๆ เช่น เวลาหรือวัสดุ จะช่วยให้ต้นทุนลดลงและคุณภาพของงานดีขึ้น
+                    </p>
+                </div>
+                <div class="flex items-center justify-center p-6 rounded-2xl">
+                    <img src="https://img5.pic.in.th/file/secure-sv1/Screenshot-2025-09-15-130219.png" alt="Screenshot 2025 09 15 130219" border="0" class="w-full h-auto object-cover rounded-2xl shadow-md">
+                </div>
+
+                <div class="flex items-center justify-center p-6 rounded-2xl">
+                    <img src="https://img2.pic.in.th/pic/ChatGPT-Image-15-..-2568-13_13_21.png" alt="ChatGPT Image 15 ก.ย. 2568 13 13 21" border="0" class="w-full h-auto object-cover rounded-2xl shadow-md">
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center space-y-2 text-center">
+                    <span class="text-3xl text-yellow-500">⭐</span>
+                    <h2 class="text-2xl font-bold text-gray-800">เพิ่มความพึงพอใจลูกค้า</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        เมื่อกระบวนการทำงานมีประสิทธิภาพ ของส่งได้เร็วขึ้น และคุณภาพดีขึ้น ลูกค้าก็จะมีความเชื่อมั่นและกลับมาใช้บริการอีก
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center space-y-2 text-center">
+                    <span class="text-3xl text-purple-500">🤝</span>
+                    <h2 class="text-2xl font-bold text-gray-800">สร้างวัฒนธรรมพนักงานมีส่วนร่วม</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        เมื่อทุกคนได้มีส่วนร่วมในการแก้ปัญหาและเสนอไอเดีย องค์กรจะเกิดวัฒนธรรมการทำงานเป็นทีมที่แข็งแรงและพนักงานจะรู้สึกมีคุณค่า
+                    </p>
+                </div>
+                <div class="flex items-center justify-center p-6 rounded-2xl">
+                    <img src="https://img5.pic.in.th/file/secure-sv1/ChatGPT-Image-15-..-2568-13_27_38.png" alt="ChatGPT Image 15 ก.ย. 2568 13 27 38" border="0" class="w-full h-auto object-cover rounded-2xl shadow-md">
+                </div>
+                
+                <div class="flex items-center justify-center p-6 rounded-2xl">
+                    <img src="https://img2.pic.in.th/pic/ChatGPT-Image-15-..-2568-13_22_29.png" alt="ChatGPT Image 15 ก.ย. 2568 13 22 29" border="0" class="w-full h-auto object-cover rounded-2xl shadow-md">
+                </div>
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center space-y-2 text-center">
+                    <span class="text-3xl text-blue-500">🚀</span>
+                    <h2 class="text-2xl font-bold text-gray-800">เพิ่มขีดความสามารถระยะยาว</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        การปรับปรุงอย่างต่อเนื่องทำให้องค์กรไม่หยุดนิ่ง พร้อมรับมือกับการเปลี่ยนแปลงในอนาคตได้อย่างมั่นคง
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- เนื้อหาสำหรับหน้าเพจที่ 4 -->
+        <div id="page4" class="page hidden">
+            <div class="flex flex-col items-center justify-center text-center">
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-6">
+                    📌 สรุปสั้น ๆ
+                </h1>
+                <p class="text-gray-700 text-3xl font-extrabold leading-relaxed mb-8">
+                    Lean Kaizen คือ <span class="text-blue-600">“นิสัย”</span> ของการปรับปรุงงานทุกวัน
+                </p>
+                <div class="bg-red-400 p-8 rounded-2xl shadow-lg inline-block transform transition-transform duration-300 text-center">
+                    <p class="text-2xl font-bold text-white mb-4">
+                        เริ่มต้นจากสิ่งเล็ก ๆ และทำซ้ำ
+                    </p>
+                    <div class="flex items-center justify-center space-x-4 text-xl sm:text-2xl font-bold text-white">
+                        <span>เริ่มจากเรื่องเล็ก ๆ</span>
+                        <span>→</span>
+                        <span>ทำซ้ำ</span>
+                        <span>→</span>
+                        <span>ผลลัพธ์ใหญ่ขึ้นเรื่อย ๆ</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 text-2xl leading-relaxed mt-8 max-w-2xl mx-auto">
+                    แนวคิดนี้ช่วยให้องค์กรคล่องตัวขึ้น มีประสิทธิภาพดีขึ้น และที่สำคัญคือพนักงานทุกคนรู้สึกว่ามีส่วนร่วมอย่างแท้จริง
+                </p>
+            </div>
+        </div>
+        
+        <!-- เนื้อหาสำหรับหน้าเพจที่ 5 (แบบฟอร์มกิจกรรม) -->
+        <div id="page5" class="page hidden">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-8 text-center">
+                ชวนคุยวันนี้: คุณเคยทำ Kaizen เล็ก ๆ ในชีวิตประจำวันหรือไม่?
+            </h1>
+            <div class="bg-gray-50 p-8 rounded-2xl shadow-sm mb-8 text-gray-700 leading-relaxed text-lg">
+                <p class="text-lg font-bold text-gray-700 mb-4">
+                    Lean Kaizen ไม่ได้ใช้ได้แค่ในงานเท่านั้น แต่ใช้ในชีวิตประจำวันได้เช่นกัน เช่น
+                </p>
+                <ul class="list-disc list-inside space-y-2 mb-6 text-xl">
+                    <li class="text-green-500">จัดระเบียบโต๊ะทำงานให้หยิบของง่ายขึ้น</li>
+                    <li class="text-blue-500">วางแผนเส้นทางไปทำงานให้เร็วขึ้น</li>
+                    <li class="text-purple-500">ใช้กล่อง/ตะกร้าแบ่งของในบ้านให้หาง่าย</li>
+                </ul>
+                <p class="font-bold">
+                    🌱 แชร์ประสบการณ์ของคุณใต้โพสต์นี้ เพื่อเป็นไอเดียดี ๆ ให้เพื่อน ๆ ด้วยกันนะครับ และทางเรามีการโวตให้กับความคิดเห็นนั้นๆโดยเพื่อนๆของคุณเอง หากความคิดเห็นไหนผลโวตมากที่สุด ทาง HR มีของรางวัลเล็ก ๆ น้อย ๆ ให้ด้วย
+                </p>
+                <!-- ปุ่มสำหรับแสดงความคิดเห็น -->
+                <div class="mt-8 text-center">
+                    <button id="view-comments-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-colors duration-300 transform hover:scale-105">
+                        ดูไอเดียของเพื่อนๆ
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-8 bg-white rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">💬 คำถามชวนแชร์:</h2>
+                <form id="kaizen-form" class="space-y-6">
+                    <div>
+                        <label for="employee-id" class="block text-gray-700 font-medium mb-2">รหัสพนักงาน:</label>
+                        <input type="text" id="employee-id" name="employee-id" class="w-full px-4 py-3 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200" required>
+                    </div>
+                    <div>
+                        <label for="kaizen-idea" class="block text-gray-700 font-medium mb-2">
+                            ในหน่วยงานของคุณ คุณคิดว่าคุณอยากทำ kaizen ในส่วนใดของกระบวนการทำงานของคุณเอง ที่คิดไว้แล้วว่าถ้าลดกระบวนการตรงนี้ได้ การทำงานของคุณจะง่ายขึ้น? (ใส่เป็นความเห็นเข้ามา)
+                        </label>
+                        <textarea id="kaizen-idea" name="kaizen-idea" rows="5" class="w-full px-4 py-3 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md shadow-lg transition-colors duration-300 transform hover:scale-105">
+                        ส่งคำตอบ
+                    </button>
+                </form>
+                <div id="submission-message" class="hidden mt-8 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-md">
+                    <p class="font-bold">ส่งคำตอบเรียบร้อยแล้ว!</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Modal for comments -->
+    <div id="comments-modal" class="modal">
+        <div class="modal-content bg-gray-100 shadow-xl p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">ความคิดเห็นจากเพื่อนพนักงาน</h2>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-700 text-4xl font-light leading-none">&times;</button>
+            </div>
+            <div id="modal-comments-container" class="space-y-6 max-h-96 overflow-y-auto pr-2">
+                <!-- Comments will be loaded here -->
+                <p class="text-center text-gray-500">
+                    ไม่สามารถเชื่อมต่อเพื่อแสดงความคิดเห็นได้
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const appScriptUrl = "https://script.google.com/macros/s/AKfycbztPUdY-YGXe7G4obZ075u20f-IMBX6V9aR9aajyxcc0YJ04NeC3zbiNTqGfOoD6Jp5Uw/exec";
+
+        function setActiveButton(activeBtn) {
+            document.querySelectorAll('.button-page').forEach(btn => {
+                btn.style.backgroundColor = '#F5DEB3';
+                btn.style.color = '#555555';
+            });
+            if (activeBtn) {
+                activeBtn.style.backgroundColor = '#E5C69F';
+                activeBtn.style.color = '#000000';
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            const activeBtn = document.getElementById(`${pageId}-btn`);
+            setActiveButton(activeBtn);
+        }
+
+        async function submitIdea(employeeId, idea) {
+            try {
+                const url = `${appScriptUrl}?action=submit&employeeId=${encodeURIComponent(employeeId)}&kaizenIdea=${encodeURIComponent(idea)}`;
+                const response = await fetch(url);
+                const result = await response.text();
+                return result.includes("Success");
+            } catch (error) {
+                console.error("Submission failed:", error);
+                return false;
+            }
+        }
+
+        async function fetchComments() {
+            try {
+                const url = `${appScriptUrl}?action=read`;
+                const response = await fetch(url);
+                const comments = await response.json();
+                return comments;
+            } catch (error) {
+                console.error("Error fetching comments:", error);
+                return [];
+            }
+        }
+
+        async function handleVote(rowId) {
+            // Check if the user has already voted for this comment
+            const votedComments = JSON.parse(localStorage.getItem('votedComments') || '[]');
+            if (votedComments.includes(rowId)) {
+                console.log("Already voted for this comment.");
+                return;
+            }
+
+            try {
+                const url = `${appScriptUrl}?action=vote&row=${rowId}`;
+                await fetch(url);
+                
+                // Save the voted comment ID to localStorage
+                votedComments.push(rowId);
+                localStorage.setItem('votedComments', JSON.stringify(votedComments));
+
+                // Refetch and display comments to show the updated vote count
+                const updatedComments = await fetchComments();
+                displayComments(updatedComments);
+            } catch (error) {
+                console.error("Error voting:", error);
+            }
+        }
+
+        function displayComments(comments) {
+            const container = document.getElementById('modal-comments-container');
+            container.innerHTML = '';
+            const votedComments = JSON.parse(localStorage.getItem('votedComments') || '[]');
+
+            if (comments.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-500">ยังไม่มีใครแสดงความคิดเห็นเลย</p>';
+                return;
+            }
+
+            comments.forEach(comment => {
+                const isVoted = votedComments.includes(comment.id);
+                const buttonColor = isVoted ? 'text-red-500' : 'text-gray-400';
+                
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500';
+                commentDiv.innerHTML = `
+                    <p class="text-sm text-gray-500 mb-2">
+                        รหัสพนักงาน: <span class="font-semibold text-gray-700">${comment.employeeId}</span>
+                    </p>
+                    <p class="text-gray-700 leading-relaxed text-lg mb-4">
+                        ${comment.kaizenIdea}
+                    </p>
+                    <div class="flex items-center space-x-2">
+                        <button class="heart-btn ${buttonColor} hover:text-red-500 transition-colors focus:outline-none" data-row-id="${comment.id}" ${isVoted ? 'disabled' : ''}>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <span class="text-lg font-bold text-gray-700">${comment.votes}</span>
+                    </div>
+                `;
+                container.appendChild(commentDiv);
+            });
+
+            document.querySelectorAll('.heart-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const rowId = event.currentTarget.dataset.rowId;
+                    handleVote(rowId);
+                });
+            });
+        }
+
+        // Event Listeners สำหรับการสลับหน้าเพจ
+        document.getElementById('page1-btn').addEventListener('click', () => showPage('page1'));
+        document.getElementById('page2-btn').addEventListener('click', () => showPage('page2'));
+        document.getElementById('page3-btn').addEventListener('click', () => showPage('page3'));
+        document.getElementById('page4-btn').addEventListener('click', () => showPage('page4'));
+        document.getElementById('page5-btn').addEventListener('click', () => showPage('page5'));
+
+        // Event Listener สำหรับการส่งฟอร์ม
+        document.getElementById('kaizen-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const employeeId = document.getElementById('employee-id').value;
+            const kaizenIdea = document.getElementById('kaizen-idea').value;
+            const submissionMessageDiv = document.getElementById('submission-message');
+
+            submissionMessageDiv.classList.add('hidden'); // ซ่อนข้อความเก่าก่อน
+            
+            const success = await submitIdea(employeeId, kaizenIdea);
+            
+            if (success) {
+                submissionMessageDiv.innerHTML = '<p class="font-bold">ส่งคำตอบเรียบร้อยแล้ว!</p>';
+                submissionMessageDiv.classList.remove('hidden');
+                document.getElementById('kaizen-form').reset();
+            } else {
+                submissionMessageDiv.innerHTML = '<p class="font-bold">การส่งคำตอบล้มเหลว กรุณาลองใหม่อีกครั้ง</p>';
+                submissionMessageDiv.classList.remove('hidden');
+            }
+        });
+
+        // การทำงานของ Modal
+        const commentsModal = document.getElementById('comments-modal');
+        const viewCommentsBtn = document.getElementById('view-comments-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        
+        if(viewCommentsBtn && commentsModal) {
+            viewCommentsBtn.addEventListener('click', async () => {
+                commentsModal.style.display = 'block';
+                const comments = await fetchComments();
+                displayComments(comments);
+            });
+        }
+        
+        if(closeModalBtn && commentsModal) {
+            closeModalBtn.addEventListener('click', () => {
+                commentsModal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target == commentsModal) {
+                commentsModal.style.display = 'none';
+            }
+        });
+
+        // แสดงหน้าเพจ 1 เมื่อโหลดหน้าจอ
+        window.addEventListener('load', () => {
+            showPage('page1');
+        });
+    </script>
+</body>
+</html>
